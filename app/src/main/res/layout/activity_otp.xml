@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimaryDark"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shree.beams_final.OtpActivity">
+
+
+    <Button
+        android:id="@+id/btnVerifyOtp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/register_layout"
+        android:backgroundTint="@color/buttonGreen"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="197dp"
+        android:layout_marginEnd="65dp"
+        android:text="Next"
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <Button
+        android:id="@+id/btnSendOtp"
+        android:onClick="send_Otp"
+        android:background="@drawable/register_layout"
+        android:backgroundTint="@color/buttonGreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnVerifyOtp"
+        android:layout_alignBottom="@+id/btnVerifyOtp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="62dp"
+        android:text="Send otp" />
+
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="320dp"
+        android:layout_height="35dp"
+        android:layout_above="@+id/btnVerifyOtp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="62dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/edittext_layout"
+        android:ems="10"
+        android:hint="Enter Number"
+        android:inputType="number"
+        android:paddingLeft="10dp" />
+
+    <Button
+        android:id="@+id/btnSkip"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignEnd="@+id/etPhoneNumber"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:text="S"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/etPhoneNumber"
+        android:layout_alignStart="@+id/etPhoneNumber"
+        android:layout_marginBottom="61dp"
+        android:text="Verify your mobile number.. "
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+</RelativeLayout>

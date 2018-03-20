@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.shree.beams_final.SettingsActivity">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/default_user"
+        android:id="@+id/CircleDP" />
+
+    <TextView
+        android:id="@+id/tvSettingName"
+        android:textSize="20dp"
+        android:textColor="#FFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/CircleDP"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Display Name" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="19dp"
+        android:text="Hi there i m using this app "
+        android:textColor="#FFF"
+        android:textSize="15dp" />
+
+    <Button
+        android:id="@+id/btnStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btnImg"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:background="@color/buttonGreen"
+        android:text="Change BIO"
+        android:padding="10dp"
+        android:textStyle="bold"
+        android:textColor="#FFF" />
+
+    <Button
+        android:id="@+id/btnImg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="19dp"
+        android:padding="10dp"
+        android:background="@color/buttonGreen"
+        android:text="Change IMAGE"
+        android:textStyle="bold"
+        android:textColor="#FFF" />
+</RelativeLayout>

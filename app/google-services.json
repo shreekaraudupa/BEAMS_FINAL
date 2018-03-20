@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "504804832192",
+    "firebase_url": "https://beamsfinal.firebaseio.com",
+    "project_id": "beamsfinal",
+    "storage_bucket": "beamsfinal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504804832192:android:c62ac7238a19321e",
+        "android_client_info": {
+          "package_name": "com.example.shree.beams_final"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504804832192-82oe4hgofr59rc4on1n3a9h3st0jjv3p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shree.beams_final",
+            "certificate_hash": "335aaf4cdb21a50976c7f050f6b8b186de380a34"
+          }
+        },
+        {
+          "client_id": "504804832192-uhj7d6o0gdbgbd5c58l5i9qn53a7kjbg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4xrV0dc6S6RmMDmFkfA9DFcP3wUmkWr8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504804832192-uhj7d6o0gdbgbd5c58l5i9qn53a7kjbg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

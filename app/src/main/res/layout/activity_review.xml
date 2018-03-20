@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    tools:context="com.example.shree.beams_final.ReviewActivity">
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="23dp"
+        android:text="Rate The Project"
+        android:textColor="#fff"
+        android:textStyle="bold|italic"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView6"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="28dp"
+        android:text="-> Rating"
+        android:textColor="#fff"
+        android:textSize="25dp" />
+
+    <Button
+        android:id="@+id/btnReviewSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView6"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="34dp"
+        android:text="Submit"
+        android:background="#123"
+        android:textColor="#fff"
+        android:layout_marginBottom="20dp"
+        />
+
+    <RadioGroup
+        android:id="@+id/rgRating"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@+id/textView7"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="3"
+        android:orientation="horizontal">
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal"
+          android:padding="5dp"
+          android:layout_marginLeft="10dp"
+          >
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Ecellent" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:textColor="#fff"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Very Good" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:layout_weight="1"
+            android:text="Good" />
+      </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content">
+        <RadioButton
+            android:id="@+id/radioButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#fff"
+            android:text="Satisfactory" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:textColor="#fff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:text="Bad" />
+        </LinearLayout>
+</LinearLayout>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="85dp"
+        android:text="-> Feedback"
+        android:textColor="#fff"
+        android:textSize="25dp" />
+
+
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView8"
+        android:layout_below="@+id/textView8"
+        android:layout_marginTop="26dp"
+        android:text="1.Upload Pic"
+        android:textSize="20dp"
+        android:textColor="#fff"
+        android:layout_marginBottom="50dp"/>
+
+    <Button
+        android:id="@+id/btnCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView10"
+        android:layout_alignBottom="@+id/textView10"
+        android:layout_toEndOf="@+id/btnReviewSubmit"
+        android:text="Camera"
+        android:textColor="#FFF"
+        android:background="@color/buttonGreen"/>
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/textView10"
+        android:layout_below="@+id/textView10"
+        android:text="2.Upload File"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView12"
+        android:layout_alignBottom="@+id/textView12"
+        android:layout_alignStart="@+id/btnCamera"
+        android:text="Upload"
+        android:textColor="#FFF"
+        android:background="@color/buttonGreen"/>
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/etDescription"
+        android:layout_alignBottom="@+id/etDescription"
+        android:layout_alignStart="@+id/textView12"
+        android:text="3.Description"
+        android:textColor="#fff"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btnUpload"
+        android:layout_below="@+id/btnUpload"
+        android:layout_marginTop="27dp"
+        android:ems="10"
+        android:hint="Write here"
+        android:inputType="textPersonName"
+        android:text="" />
+
+</RelativeLayout>

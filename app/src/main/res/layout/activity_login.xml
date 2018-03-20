@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.shree.beams_final.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_above="@+id/textView4"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="52dp"
+        android:background="@color/colorPrimaryDark">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/layout_register"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="31dp"
+            android:fontFamily="monospace"
+            android:text="BEAMS"
+            android:textColor="#fff"
+            android:textSize="40dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="Login To Your Account"
+            android:textColor="#fff"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="280dp"
+            android:layout_height="40dp"
+            android:layout_below="@+id/textView3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/edittext_layout"
+            android:padding="10dp"
+            android:ems="10"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:textColorLink="#fff" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="280dp"
+            android:padding="10dp"
+            android:layout_height="40dp"
+            android:layout_alignLeft="@+id/etEmail"
+            android:layout_alignStart="@+id/etEmail"
+            android:layout_below="@+id/etEmail"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/edittext_layout"
+            android:ems="10"
+            android:hint="Password"
+            android:inputType="textPassword"
+
+            android:textColorLink="#fff" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="17dp"
+            android:backgroundTint="@color/buttonGreen"
+            android:text="Login"
+            android:textColor="#000" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="22dp"
+        android:background="@drawable/register_layout"
+        android:backgroundTint="#0C4475"
+        android:text="Register"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_signup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="32dp"
+        android:text="NOT A MEMBER YET?"
+        android:textColor="#0C4475"
+        android:textSize="25dp" />
+</RelativeLayout>
+
