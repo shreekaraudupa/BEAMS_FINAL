@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -21,10 +22,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class ReviewActivity extends AppCompatActivity {
 
     RadioGroup rgRating;
     RadioButton selectdRating;
+    TextView textView6;
     Button btnReviewSubmit, btnCamera, btnUpload, btnChoose;
     EditText etDescription;
     StorageReference mStorage;
@@ -36,17 +41,30 @@ public class ReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
+        textView6=findViewById(R.id.textView6);
         rgRating = findViewById(R.id.rgRating);
         btnReviewSubmit = findViewById(R.id.btnReviewSubmit);
         btnCamera = findViewById(R.id.btnCamera);
         btnUpload = findViewById(R.id.btnUpload);
         //btnChoose = findViewById(R.id.btnChoose);
         etDescription = findViewById(R.id.etDescription);
+
+
+        String receivedPosition=getIntent().getExtras().getString("position");
+        //textView6.setText(receivedPosition);
+
         mStorage = FirebaseStorage.getInstance().getReference();
         uploadPic = new ProgressDialog(this);
 
         int orientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         setRequestedOrientation(orientation);
+
+        Calendar c = Calendar.getInstance();
+        System.out.println("Current time => "+c.getTime());
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+        TextView tvTimeStamp= (TextView)findViewById(R.id.tvTimeStamp) ;
+        tvTimeStamp.setText(formattedDate.toString());
 
         btnReviewSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,21 +15,33 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     Toolbar main_page_toolbar;
-    Button btnFilter;
+    Button btnGetJson,btnParseJson;
     AlertDialog.Builder alertDialogBuilder ;
-    Spinner spnYear,spnDistrict,spnType,spnCategory;
+    String JSON_STRING,JSON_PARSE;
+    private RadioGroup rgType,rgConst;
+    private RadioButton radioTypeButton,radioConstButton;
 
 
     private FirebaseAuth mAuth;
@@ -40,18 +53,18 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+        btnParseJson=findViewById(R.id.btnParseJson);
+        btnGetJson=findViewById(R.id.btnGetJson);
+        rgType=findViewById(R.id.rgType);
+        rgConst=findViewById(R.id.rgConst);
+
+
         main_page_toolbar=findViewById(R.id.main_page_toolbar);
         setSupportActionBar(main_page_toolbar);
         getSupportActionBar().setTitle("BEAMS");
 
         int orientation= ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
         setRequestedOrientation(orientation);
-
-        spnYear=findViewById(R.id.spnYear);
-        spnDistrict=findViewById(R.id.spnDistrict);
-        spnType=findViewById(R.id.spnType);
-        spnCategory=findViewById(R.id.spnCategory);
-        btnFilter=findViewById(R.id.btnFilter);
 
         alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage("You want to Logout?");
@@ -69,40 +82,29 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayList year=new ArrayList();
-        year.add("2017");
-        year.add("2016");
-        year.add("2015");
-        ArrayAdapter yearAdp=new ArrayAdapter(this,android.R.layout.simple_spinner_item,year);
-        spnYear.setAdapter(yearAdp);
 
-        ArrayList district=new ArrayList();
-        district.add("Mumbai");
-        district.add("Goa");
-        district.add("Pune");
-        ArrayAdapter districtAdp =new ArrayAdapter(this,android.R.layout.simple_spinner_item,district);
-        spnDistrict.setAdapter(districtAdp);
-
-        ArrayList type=new ArrayList();
-        type.add("Road");
-        type.add("Building");
-        type.add("Bridge");
-        ArrayAdapter typeAdp=new ArrayAdapter(this,android.R.layout.simple_spinner_item,type);
-        spnType.setAdapter(typeAdp);
-
-        ArrayList category=new ArrayList();
-        category.add("Any");
-        category.add("Full ");
-        category.add("All");
-        ArrayAdapter categoryAdp=new ArrayAdapter(this,android.R.layout.simple_spinner_item,category);
-        spnCategory.setAdapter(categoryAdp);
-
-
-        btnFilter.setOnClickListener(new View.OnClickListener() {
+        btnGetJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent filter=new Intent(MainActivity.this,ListOfProjects.class);
-                startActivity(filter);
+                new BackgroundTask().execute();
+                Toast.makeText(getApplicationContext(),"GOT JSON",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnParseJson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+           if(JSON_PARSE==null)
+                {
+                    Toast.makeText(getApplicationContext(),"Get JSON data ",Toast.LENGTH_LONG).show();
+
+                }
+            else{
+               Intent i = new Intent(MainActivity.this, ListOfProjects.class);
+               i.putExtra("data", JSON_PARSE);
+               startActivity(i);
+            }
+
             }
         });
 
@@ -190,5 +192,83 @@ public class MainActivity extends AppCompatActivity {
         alertDialogBuilder.show();
 
     }
+
+    class BackgroundTask extends AsyncTask<Void,Void,String> {
+
+        String json_url;
+        @Override
+        protected void onPreExecute() {
+
+            int selectedType=rgType.getCheckedRadioButtonId();
+            radioTypeButton=findViewById(selectedType);
+
+            int selectedConst=rgConst.getCheckedRadioButtonId();
+            radioConstButton=findViewById(selectedConst);
+
+            //Toast.makeText(MainActivity.this,radioTypeButton.getText(),Toast.LENGTH_SHORT).show();
+
+            String selected_type=radioTypeButton.getText().toString();
+            String selected_const=radioConstButton.getText().toString();
+
+            if(selected_const.equals("Nashik") && selected_type.equals("Road")){
+                json_url="http://5be753dc.ngrok.io/Nashik_Road.php";
+            }else if(selected_const.equals("Nashik") && selected_type.equals("Bridge")){
+                json_url="http://fcd9aaf0.ngrok.io/Nashik_Bridge.php";
+            }else if(selected_const.equals("Nashik") && selected_type.equals("All")){
+                json_url="http://fcd9aaf0.ngrok.io/Nashik.php";
+            }
+
+            if(selected_type.equals("Road")&& selected_const.equals("Mumbai") ){
+                json_url="http://fcd9aaf0.ngrok.io/Mumbai_Road.php";
+            }else if(selected_type.equals("Bridge") && selected_const.equals("Mumbai")){
+                json_url="http://fcd9aaf0.ngrok.io/Mumbai_Bridge.php";
+            }else if(selected_type.equals("All") && selected_const.equals("Mumbai")) {
+                json_url = "http://fcd9aaf0.ngrok.io/Mumbai.php";
+            }
+
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            try {
+                URL url=new URL(json_url);
+                HttpURLConnection httpURLConnection=(HttpURLConnection) url.openConnection();
+                InputStream inputStream=httpURLConnection.getInputStream();
+                BufferedReader bufferedReader=new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder stringBuilder=new StringBuilder();
+                while((JSON_STRING=bufferedReader.readLine())!=null)
+                {
+                    stringBuilder.append(JSON_STRING+"\n");
+                }
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+
+                return stringBuilder.toString().trim();
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            TextView tvDisplay=findViewById(R.id.tvDisplay);
+            tvDisplay.setText(result);
+            JSON_PARSE=result;
+
+
+        }
+    }
+
     
 }

@@ -22,100 +22,158 @@
         android:textSize="30dp"/>
 
     <TextView
-        android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView5"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:text="1.Financial Year "
-        android:textSize="20dp"
-        android:textColor="#123"
-        />
+        android:text="1.Year "
+        android:textSize="25dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#111"
+        android:id="@+id/textView9" />
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="15dp"
+        android:weightSum="1"
+        android:id="@+id/rgYear">
+
+        <RadioButton
+            android:id="@+id/rb2017"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:text="2017"
+            android:textSize="25dp" />
+
+    </RadioGroup>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="2.Type of work "
+        android:textSize="25dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#111"/>
+    <RadioGroup
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="15dp"
+        android:weightSum="1"
+        android:id="@+id/rgType">
+
+
+        <RadioButton
+            android:id="@+id/rbRoad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:text="Road"
+            android:textSize="25dp" />
+
+        <RadioButton
+            android:id="@+id/rbBridge"
+            android:layout_marginLeft="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.13"
+            android:checked="false"
+            android:text="Bridge"
+            android:textSize="25dp" />
+        <RadioButton
+            android:id="@+id/rbAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="All"
+            android:textSize="25dp" />
+
+    </RadioGroup>
+
 
     <TextView
-
-        android:textColor="#123"        android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/spnYear"
-        android:layout_marginTop="19dp"
-        android:text="2. District"
-        android:layout_marginLeft="10dp"
-        android:textSize="20dp" />
+        android:text="3.Constituency  "
+        android:textSize="25dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="#111"/>
+    <RadioGroup
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="360dp"
+        android:layout_marginLeft="15dp"
+        android:weightSum="1"
+        android:id="@+id/rgConst">
 
+        <RadioButton
+            android:id="@+id/rbMumbai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:text="Mumbai"
+            android:textSize="25dp" />
+
+        <RadioButton
+            android:id="@+id/rbNashik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.13"
+            android:checked="false"
+            android:text="Nashik"
+            android:textSize="25dp" />
+        <RadioButton
+            android:id="@+id/rbAurangabad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="Aurangabad"
+            android:textSize="25dp" />
+
+    </RadioGroup>
     <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView11"
-        android:layout_below="@+id/spnDistrict"
-        android:layout_marginTop="26dp"
-        android:text="3.Work Category"
-        android:textColor="#123"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/tvDisplay"
+        android:layout_width="65dp"
+        android:layout_height="15dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/spnCategory"
-        android:layout_marginTop="30dp"
-        android:text="4.Work type"
-        android:layout_marginLeft="10dp"
-        android:textColor="#123"
-        android:textSize="20dp" />
+        android:layout_marginBottom="63dp"
+        android:text="TextView"
+        android:textColor="#111"
+        android:textSize="15dp" />
 
-    <Spinner
-        android:id="@+id/spnYear"
-        android:layout_width="150dp"
-        android:layout_marginLeft="25dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView9"
-        android:layout_marginTop="17dp" />
 
-    <Spinner
-        android:id="@+id/spnDistrict"
-        android:layout_width="150dp"
-        android:layout_marginLeft="25dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView11"
-        android:layout_marginTop="16dp" />
-
-    <Spinner
-        android:id="@+id/spnCategory"
-        android:layout_width="150dp"
-        android:layout_marginLeft="25dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView13"
-        android:layout_marginTop="19dp" />
-
-    <Spinner
-        android:id="@+id/spnType"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/textView14"
-        android:layout_marginLeft="25dp"
-        android:layout_marginTop="44dp" />
 
     <Button
-        android:id="@+id/btnFilter"
-        android:background="@color/colorPrimaryDark"
-        android:textColor="#fff"
+        android:id="@+id/btnParseJson"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="15dp"
-        android:layout_toEndOf="@+id/textView13"
-        android:text="Done" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Done"
+        android:textColor="#fff" />
+
+    <Button
+        android:id="@+id/btnGetJson"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignEnd="@+id/textView9"
+        android:layout_alignParentBottom="true"
+        android:text="G" />
 
 
 </RelativeLayout>
