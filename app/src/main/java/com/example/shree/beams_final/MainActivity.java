@@ -209,22 +209,32 @@ public class MainActivity extends AppCompatActivity {
 
             String selected_type=radioTypeButton.getText().toString();
             String selected_const=radioConstButton.getText().toString();
+            String ngrok="http://06ec3c3e.ngrok.io";
 
             if(selected_const.equals("Nashik") && selected_type.equals("Road")){
-                json_url="http://5be753dc.ngrok.io/Nashik_Road.php";
+                json_url=ngrok+"/Nashik_Road.php";
             }else if(selected_const.equals("Nashik") && selected_type.equals("Bridge")){
-                json_url="http://fcd9aaf0.ngrok.io/Nashik_Bridge.php";
+                json_url=ngrok+"/Nashik_Bridge.php";
             }else if(selected_const.equals("Nashik") && selected_type.equals("All")){
-                json_url="http://fcd9aaf0.ngrok.io/Nashik.php";
+                json_url=ngrok+"/Nashik.php";
             }
 
             if(selected_type.equals("Road")&& selected_const.equals("Mumbai") ){
-                json_url="http://fcd9aaf0.ngrok.io/Mumbai_Road.php";
+                json_url=ngrok+"/Mumbai_Road.php";
             }else if(selected_type.equals("Bridge") && selected_const.equals("Mumbai")){
-                json_url="http://fcd9aaf0.ngrok.io/Mumbai_Bridge.php";
+                json_url=ngrok+"/Mumbai_Bridge.php";
             }else if(selected_type.equals("All") && selected_const.equals("Mumbai")) {
-                json_url = "http://fcd9aaf0.ngrok.io/Mumbai.php";
+                json_url = ngrok+"/Mumbai.php";
             }
+
+            if(selected_const.equals("Aurangabad") && selected_type.equals("Road")){
+                json_url=ngrok+"/Aurangabad_Road.php";
+            }else if(selected_const.equals("Aurangabad") && selected_type.equals("Bridge")){
+                json_url=ngrok+"/Aurangabad_Bridge.php";
+            }else if(selected_const.equals("Aurangabad") && selected_type.equals("All")){
+                json_url=ngrok+"/Aurangabad.php";
+            }
+
 
         }
 

@@ -82,10 +82,10 @@ public class ListOfProjects extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                String text = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(),text,Toast.LENGTH_SHORT).show();
+                String text =""+position;
+                //Toast.makeText(getApplicationContext(),""+text,Toast.LENGTH_LONG).show();
                 Intent selectedIntent=new Intent(ListOfProjects.this,ReviewActivity.class);
-                selectedIntent.putExtra("position",position);
+                selectedIntent.putExtra("position",text);
                 startActivity(selectedIntent);
                // Toast.makeText(getApplicationContext(), "Click ListItem Number " + position, Toast.LENGTH_LONG).show();
             }

@@ -13,9 +13,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -24,6 +30,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ReviewActivity extends AppCompatActivity {
 
@@ -34,24 +42,26 @@ public class ReviewActivity extends AppCompatActivity {
     EditText etDescription;
     StorageReference mStorage;
     ProgressDialog uploadPic;
+    RatingBar ratingBar;
     private static final int CAMERA_REQUEST_CODE = 1;
     private static final int PICK_IMAGE_REQ = 10;
+    String server_url="http://06ec3c3e.ngrok.io/update_info.php";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
         textView6=findViewById(R.id.textView6);
-        rgRating = findViewById(R.id.rgRating);
         btnReviewSubmit = findViewById(R.id.btnReviewSubmit);
         btnCamera = findViewById(R.id.btnCamera);
         btnUpload = findViewById(R.id.btnUpload);
         //btnChoose = findViewById(R.id.btnChoose);
         etDescription = findViewById(R.id.etDescription);
+        ratingBar=findViewById(R.id.ratingBar);
 
-
-        String receivedPosition=getIntent().getExtras().getString("position");
-        //textView6.setText(receivedPosition);
+        final String receivedPosition=getIntent().getExtras().getString("position");
+       // textView6.append(receivedPosition);
+        Toast.makeText(getApplicationContext(),"Review for project -"+receivedPosition,Toast.LENGTH_LONG).show();
 
         mStorage = FirebaseStorage.getInstance().getReference();
         uploadPic = new ProgressDialog(this);
@@ -64,14 +74,66 @@ public class ReviewActivity extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String formattedDate = df.format(c.getTime());
         TextView tvTimeStamp= (TextView)findViewById(R.id.tvTimeStamp) ;
-        tvTimeStamp.setText(formattedDate.toString());
+        final String details=formattedDate.toString();
+        tvTimeStamp.setText(details);
 
         btnReviewSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int selectedRat = rgRating.getCheckedRadioButtonId();
-                selectdRating = findViewById(selectedRat);
-                String finalRating = selectdRating.getText().toString();
+                //Rating
+                final String rating=String.valueOf(ratingBar.getRating());
+                //Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
+                //Timestamp
+                final String UploadTimestamp=details;
+                //User id
+                final String cId="9769480886";
+                //Project reviewing on
+                final String uploadProject=receivedPosition;
+                //Description
+                final String description=etDescription.getText().toString();
+
+                StringRequest stringRequest=new StringRequest(Request.Method.POST, server_url, new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        /*
+                        builder.setTitle("Server response");
+                        builder.setMessage("Response :"+response);
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                             etDescription.setText("");
+
+                            }
+                        });
+                        AlertDialog alertDialog=builder.create();
+                        alertDialog.show();
+                        */
+                        Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
+
+                    }
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                        Toast.makeText(ReviewActivity.this,error.toString(),Toast.LENGTH_LONG).show();
+                        error.printStackTrace();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String,String> params =new HashMap<String, String>();
+                        params.put("uId",cId);
+                        params.put("project",uploadProject);
+                        params.put("Rating",rating);
+                        params.put("Description",description);
+                        params.put("Details",details);
+                        return params;
+                    }
+                };
+                MySingleton.getInstance(ReviewActivity.this).addToRequestQueue(stringRequest);
+
+
 
 
             }
